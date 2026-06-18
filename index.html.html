@@ -1,0 +1,619 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Natalia Marinho | Miss T Supranational 2025</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      /* Palette: Optimized for Contrast & Luxury */
+      --gold: #c5a059;
+      --gold-text: #967537; /* WCAG AA Compliant */
+      --gold-light: #e8d5b5;
+      --rose: #eec0c8;
+      --cream: #fffaf5;
+      --dark: #1a1a1a;
+      --glass: rgba(255, 255, 255, 0.7);
+      
+      /* Typography Scale */
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Montserrat', sans-serif;
+      
+      /* Spacing System */
+      --space-unit: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Layering --- */
+    #glitter-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: clamp(15px, 3vw, 25px) 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(255,250,245,0.9), transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(10px, 2vw, 30px);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .lang-switcher {
+      display: flex;
+      gap: 12px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--gold-text);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0 5%;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      z-index: 2;
+    }
+
+    .hero-text { text-align: left; }
+    .hero-text h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-family: var(--font-display);
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text p.tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      font-weight: 400;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img {
+      max-height: 85vh;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 25px 50px rgba(197, 160, 89, 0.25));
+    }
+
+    /* --- Content Sections --- */
+    .section-padding { padding: clamp(80px, 15vh, 160px) 5%; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 4rem;
+      line-height: 1.1;
+    }
+
+    /* Story */
+    .story-section { background: white; }
+    .story-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .story-text p {
+      font-size: 1.15rem;
+      margin-bottom: 1.8rem;
+      color: #444;
+      font-weight: 300;
+    }
+
+    .quote-box {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-style: italic;
+      color: var(--gold-text);
+      border-left: 2px solid var(--gold);
+      padding-left: 30px;
+      margin-top: 2rem;
+    }
+
+    /* Services */
+    .services-section { background: var(--cream); text-align: center; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: var(--glass);
+      padding: 60px 40px;
+      border: 1px solid rgba(197, 160, 89, 0.15);
+      backdrop-filter: blur(12px);
+      transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), border-color 0.5s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(197, 160, 89, 0.1);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: space-around;
+      background: var(--dark);
+      color: white;
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .stat-item h4 { 
+      color: var(--gold-light); 
+      font-size: 2.2rem; 
+      font-family: var(--font-display); 
+      margin-bottom: 8px;
+    }
+    .stat-item p { 
+      font-size: 0.7rem; 
+      letter-spacing: 0.25em; 
+      text-transform: uppercase; 
+      opacity: 0.6; 
+    }
+
+    /* Timeline */
+    .timeline-section { background: white; }
+    .timeline-container {
+      position: relative;
+      max-width: 850px;
+      margin: 60px auto;
+      padding-left: 40px;
+      border-left: 1px solid var(--gold-light);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 70px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -45px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--gold);
+    }
+
+    .timeline-date {
+      font-weight: 600;
+      color: var(--gold-text);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    /* Contact */
+    .contact-section { text-align: center; background: var(--cream); }
+    .contact-btn {
+      display: inline-block;
+      padding: 18px 48px;
+      border: 1px solid var(--gold);
+      color: var(--gold-text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 40px;
+      transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+      z-index: -1;
+    }
+
+    .contact-btn:hover { color: white; }
+    .contact-btn:hover::before { width: 100%; }
+
+    /* Footer */
+    footer {
+      padding: 60px 5%;
+      text-align: center;
+      background: #fff;
+      border-top: 1px solid var(--gold-light);
+    }
+
+    .social-links {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover { color: var(--gold); }
+
+    /* --- Responsive Optimization --- */
+    @media (max-width: 768px) {
+      .hero-container { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { text-align: center; order: 2; margin-top: 2rem; }
+      .hero-image-wrapper { order: 1; height: 55vh; }
+      .story-content { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .stats-bar { flex-direction: column; gap: 40px; }
+      .timeline-container { margin-left: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="glitter-canvas"></canvas>
+
+  <nav>
+    <div class="nav-links">
+      <a href="#historia">Historia</a>
+      <a href="#hacer">Lo que hago</a>
+      <a href="#camino">Camino</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="lang-switcher">
+      <span>ES</span> <span>PT</span> <span>CA</span> <span>FR</span> <span>IT</span> <span>EN</span> <span>DE</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <p class="reveal">Miss T Supranational 2025</p>
+        <h1 class="reveal">Natalia<br>Marinho</h1>
+        <p class="tagline reveal">Elegancia · Fuerza · Representación</p>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="mqjb7y02-natalia-1.png" alt="Natalia Marinho" class="hero-img sovereign-float">
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section id="historia" class="story-section section-padding">
+    <div class="container">
+      <h2 class="reveal">Mi Historia</h2>
+      <div class="story-content">
+        <div class="story-text">
+          <p class="reveal">De Recife al Mundo. Natalia Marinho no nació en un palacio. Nació en Recife, una ciudad vibrante del nordeste brasileño donde los sueños a veces parecen demasiado grandes para las calles que los albergan.</p>
+          <p class="reveal">A los 18 años, con una maleta y una determinación inquebrantable, cruzó el Atlántico. España no le dio nada fácil — pero Natalia no vino a buscar facilidades. Vino a construir.</p>
+        </div>
+        <div class="quote-box reveal">
+          "No me coronaron por lo que parezco. Me coronaron por lo que represento."
+        </div>
+      </div>
+      <div class="story-text" style="margin-top: 60px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <p class="reveal">Hoy, como Miss T Supranational 2025, representa algo más grande que ella misma: la posibilidad de que una chica trans de Recife pueda coronarse reina del mundo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LO QUE HAGO -->
+  <section id="hacer" class="services-section section-padding">
+    <div class="container">
+      <h2 class="reveal">Lo que hago</h2>
+      <p class="reveal" style="letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem; color: var(--gold-text);">Moda, Eventos & Representación</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <span class="service-icon">👗</span>
+          <h3>Diseño de Moda</h3>
+          <p>Colecciones que fusionan la elegancia clásica con la identidad contemporánea.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">✨</span>
+          <h3>Eventos & Certámenes</h3>
+          <p>Presencia en eventos de moda y galas. Una fuerza natural que ilumina cada espacio.</p>
+        </div>
+        <div class="service-card reveal">
+          <span class="service-icon">💎</span>
+          <h3>Representación</h3>
+          <p>Voz del colectivo trans. Embajadora de diversidad, inclusión y empoderamiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item reveal">
+      <h4>2025</h4>
+      <p>Miss T Supranational</p>
+    </div>
+    <div class="stat-item reveal">
+      <h4>Brasil</h4>
+      <p>Recife, Origen</p>
+    </div>
+    <div class="stat-item reveal">
+      <h4>España</h4>
+      <p>Hogar</p>
+    </div>
+    <div class="stat-item reveal">
+      <h4>∞</h4>
+      <p>Pasión</p>
+    </div>
+  </div>
+
+  <!-- CAMINO (Timeline) -->
+  <section id="camino" class="timeline-section section-padding">
+    <div class="container">
+      <h2 class="reveal" style="text-align: center; margin-bottom: 80px;">Mi Camino</h2>
+      <div class="timeline-container">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Recife</div>
+          <div class="timeline-title">Nace en Recife, Brasil</div>
+          <p>Creció con pasión por la moda y el arte, soñando con un mundo más grande.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">18 años</div>
+          <div class="timeline-title">La Gran Decisión</div>
+          <p>Cruza el Atlántico rumbo a España. Solo con su talento y determinación.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Adaptación</div>
+          <div class="timeline-title">Resiliencia</div>
+          <p>Cada obstáculo se convirtió en escalón. Cada rechazo en motivación.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Hogar</div>
+          <div class="timeline-title">Española de Corazón</div>
+          <p>Obtiene la nacionalidad. España deja de ser tierra de paso para convertirse en hogar.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2025</div>
+          <div class="timeline-title">La Coronación</div>
+          <p>Coronada Miss T Supranational en Italia. Los sueños se hacen realidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contact-section section-padding">
+    <div class="container">
+      <h2 class="reveal">Trabajemos Juntas</h2>
+      <p class="reveal">Abierta a proyectos que celebren la diversidad, la moda y la autenticidad.</p>
+      <a href="mailto:ataliafalcon@icloud.com" class="contact-btn reveal">Contactar por Email</a>
+      <div class="social-links reveal" style="margin-top: 50px;">
+        <a href="https://www.instagram.com/nati_natalia_marinho_/" target="_blank">INSTAGRAM</a>
+        <a href="mailto:ataliafalcon@icloud.com">EMAIL</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Natalia Marinho — Miss T Supranational 2025</p>
+  </footer>
+
+  <script>
+    // --- 1. GLITTER SYSTEM ---
+    const canvas = document.getElementById('glitter-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: -1000, y: -1000 };
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.init();
+      }
+      init() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.2 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        const colors = ['#c5a059', '#eec0c8', '#ffffff', '#f8e8d5'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 120) {
+          this.opacity = Math.min(1, this.opacity + 0.05);
+          this.x -= dx * 0.01;
+          this.y -= dy * 0.01;
+        } else {
+          this.opacity = Math.max(0.2, this.opacity - 0.01);
+        }
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for(let i=0; i<Math.floor(window.innerWidth/5); i++) particles.push(new Particle());
+    }
+    function animate() {
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }, {passive:true});
+
+    initParticles();
+    animate();
+
+    // --- 2. GSAP ANIMATIONS ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Floating effect
+    gsap.to(".sovereign-float", {
+      y: 20,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    // Reveal elements
+    gsap.utils.toArray(".reveal").forEach(el => {
+      gsap.from(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out"
+      });
+    });
+
+    // Parallax for Hero Image
+    gsap.to(".hero-img", {
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      },
+      y: 100
+    });
+
+  </script>
+</body>
+</html>
