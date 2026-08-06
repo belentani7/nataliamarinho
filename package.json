@@ -1,0 +1,7 @@
+{
+  "name": "nataliamarinho-static-site",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/smoke-test.mjs"
+  }
+}

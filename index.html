@@ -105,6 +105,17 @@
       color: var(--gold-text);
     }
 
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--gold);
+      background: var(--cream);
+      color: var(--dark);
+      padding: 8px 12px;
+      font: 600 0.65rem var(--font-body);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     /* --- Hero Section --- */
     .hero {
       height: 100vh;
@@ -357,9 +368,33 @@
       .hero-text { text-align: center; order: 2; margin-top: 2rem; }
       .hero-image-wrapper { order: 1; height: 55vh; }
       .story-content { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      nav { align-items: flex-start; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 5%;
+        right: 5%;
+        padding: 18px;
+        flex-direction: column;
+        background: rgba(255, 250, 245, 0.98);
+        border: 1px solid var(--gold-light);
+      }
+      .nav-links[data-open="true"] { display: flex; }
+      .lang-switcher { margin-top: 10px; max-width: 170px; text-align: right; }
       .stats-bar { flex-direction: column; gap: 40px; }
       .timeline-container { margin-left: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      #glitter-canvas { display: none; }
     }
   </style>
 </head>
@@ -367,15 +402,16 @@
 
   <canvas id="glitter-canvas"></canvas>
 
-  <nav>
-    <div class="nav-links">
+  <nav aria-label="Navegación principal">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menú</button>
+    <div class="nav-links" id="primary-navigation" data-open="false">
       <a href="#historia">Historia</a>
       <a href="#hacer">Lo que hago</a>
       <a href="#camino">Camino</a>
       <a href="#contacto">Contacto</a>
     </div>
     <div class="lang-switcher">
-      <span>ES</span> <span>PT</span> <span>CA</span> <span>FR</span> <span>IT</span> <span>EN</span> <span>DE</span>
+      <span>ES · Contenido disponible en español</span>
     </div>
   </nav>
 
@@ -388,7 +424,7 @@
         <p class="tagline reveal">Elegancia · Fuerza · Representación</p>
       </div>
       <div class="hero-image-wrapper">
-        <img src="mqjb7y02-natalia-1.png" alt="Natalia Marinho" class="hero-img sovereign-float">
+        <img src="natalia-1-web.png" alt="Natalia Marinho" class="hero-img sovereign-float">
       </div>
     </div>
   </section>
@@ -498,7 +534,7 @@
       <p class="reveal">Abierta a proyectos que celebren la diversidad, la moda y la autenticidad.</p>
       <a href="mailto:ataliafalcon@icloud.com" class="contact-btn reveal">Contactar por Email</a>
       <div class="social-links reveal" style="margin-top: 50px;">
-        <a href="https://www.instagram.com/nati_natalia_marinho_/" target="_blank">INSTAGRAM</a>
+        <a href="https://www.instagram.com/nati_natalia_marinho_/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
         <a href="mailto:ataliafalcon@icloud.com">EMAIL</a>
       </div>
     </div>
@@ -509,6 +545,24 @@
   </footer>
 
   <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const menuToggle = document.querySelector('.menu-toggle');
+    const primaryNavigation = document.getElementById('primary-navigation');
+
+    if (menuToggle && primaryNavigation) {
+      menuToggle.addEventListener('click', () => {
+        const open = primaryNavigation.dataset.open !== 'true';
+        primaryNavigation.dataset.open = String(open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+      primaryNavigation.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          primaryNavigation.dataset.open = 'false';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
     // --- 1. GLITTER SYSTEM ---
     const canvas = document.getElementById('glitter-canvas');
     const ctx = canvas.getContext('2d');
@@ -574,11 +628,14 @@
     window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
     window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }, {passive:true});
 
-    initParticles();
-    animate();
+    if (!reduceMotion) {
+      initParticles();
+      animate();
+    }
 
     // --- 2. GSAP ANIMATIONS ---
-    gsap.registerPlugin(ScrollTrigger);
+    if (!reduceMotion) {
+      gsap.registerPlugin(ScrollTrigger);
 
     // Floating effect
     gsap.to(".sovereign-float", {
@@ -613,6 +670,7 @@
       },
       y: 100
     });
+    }
 
   </script>
 </body>
