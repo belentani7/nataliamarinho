@@ -4,7 +4,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sitio editorial de Natalia Marinho, Miss T Supranational 2025: historia, servicios, trayectoria y contacto profesional." />
+  <meta name="author" content="Natalia Marinho" />
+  <meta name="theme-color" content="#fffaf5" />
+  <meta name="color-scheme" content="light only" />
   <title>Natalia Marinho | Miss T Supranational 2025</title>
+  <meta property="og:title" content="Natalia Marinho | Miss T Supranational 2025" />
+  <meta property="og:description" content="Historia editorial, representación y contacto profesional de Natalia Marinho." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="natalia-1-web.png" as="image" fetchpriority="high" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,6 +56,24 @@
       overflow-x: hidden;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 200;
+      padding: 0.9rem 1.1rem;
+      background: var(--gold);
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 700;
+      transform: translateY(-200%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     /* --- Layering --- */
@@ -147,11 +175,27 @@
       justify-content: center;
     }
 
+    .hero-figure {
+      display: grid;
+      gap: 0.85rem;
+      justify-items: center;
+    }
+
     .hero-img {
       max-height: 85vh;
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 25px 50px rgba(197, 160, 89, 0.25));
+    }
+
+    .hero-caption,
+    .image-caption {
+      max-width: 28rem;
+      text-align: center;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-text);
     }
 
     /* --- Content Sections --- */
@@ -174,6 +218,20 @@
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
+    }
+
+    .story-image {
+      display: grid;
+      gap: 0.75rem;
+      justify-items: center;
+    }
+
+    .story-image img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 24px;
+      box-shadow: 0 24px 50px rgba(26, 26, 26, 0.12);
+      object-fit: cover;
     }
 
     .story-text p {
@@ -357,15 +415,28 @@
       .hero-text { text-align: center; order: 2; margin-top: 2rem; }
       .hero-image-wrapper { order: 1; height: 55vh; }
       .story-content { grid-template-columns: 1fr; }
+      .story-image img { max-width: 100%; }
       .nav-links { display: none; }
       .stats-bar { flex-direction: column; gap: 40px; }
       .timeline-container { margin-left: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      #glitter-canvas { display: none; }
     }
   </style>
 </head>
 <body>
 
   <canvas id="glitter-canvas"></canvas>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <nav>
     <div class="nav-links">
@@ -379,141 +450,164 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-container">
-      <div class="hero-text">
-        <p class="reveal">Miss T Supranational 2025</p>
-        <h1 class="reveal">Natalia<br>Marinho</h1>
-        <p class="tagline reveal">Elegancia · Fuerza · Representación</p>
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-text">
+          <p class="reveal">Miss T Supranational 2025</p>
+          <h1 class="reveal">Natalia<br>Marinho</h1>
+          <p class="tagline reveal">Elegancia · Fuerza · Representación</p>
+        </div>
+        <div class="hero-image-wrapper">
+          <figure class="hero-figure">
+            <img src="natalia-1-web.png" alt="Natalia Marinho en retrato editorial" class="hero-img sovereign-float" width="1080" height="1350" fetchpriority="high" decoding="async">
+            <figcaption class="hero-caption">Retrato principal · 2026</figcaption>
+          </figure>
+        </div>
       </div>
-      <div class="hero-image-wrapper">
-        <img src="mqjb7y02-natalia-1.png" alt="Natalia Marinho" class="hero-img sovereign-float">
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HISTORIA -->
-  <section id="historia" class="story-section section-padding">
-    <div class="container">
-      <h2 class="reveal">Mi Historia</h2>
-      <div class="story-content">
-        <div class="story-text">
-          <p class="reveal">De Recife al Mundo. Natalia Marinho no nació en un palacio. Nació en Recife, una ciudad vibrante del nordeste brasileño donde los sueños a veces parecen demasiado grandes para las calles que los albergan.</p>
-          <p class="reveal">A los 18 años, con una maleta y una determinación inquebrantable, cruzó el Atlántico. España no le dio nada fácil — pero Natalia no vino a buscar facilidades. Vino a construir.</p>
+    <!-- HISTORIA -->
+    <section id="historia" class="story-section section-padding">
+      <div class="container">
+        <h2 class="reveal">Mi Historia</h2>
+        <div class="story-content">
+          <div class="story-text">
+            <p class="reveal">De Recife al Mundo. Natalia Marinho no nació en un palacio. Nació en Recife, una ciudad vibrante del nordeste brasileño donde los sueños a veces parecen demasiado grandes para las calles que los albergan.</p>
+            <p class="reveal">A los 18 años, con una maleta y una determinación inquebrantable, cruzó el Atlántico. España no le dio nada fácil — pero Natalia no vino a buscar facilidades. Vino a construir.</p>
+          </div>
+          <div class="quote-box reveal">
+            "No me coronaron por lo que parezco. Me coronaron por lo que represento."
+          </div>
         </div>
-        <div class="quote-box reveal">
-          "No me coronaron por lo que parezco. Me coronaron por lo que represento."
+        <div class="story-content" style="margin-top: 60px;">
+          <div class="story-text" style="align-self: center;">
+            <p class="reveal">Hoy, como Miss T Supranational 2025, representa algo más grande que ella misma: la posibilidad de que una chica trans de Recife pueda coronarse reina del mundo.</p>
+          </div>
+          <figure class="story-image reveal">
+            <img src="natalia-2-web.png" alt="Natalia Marinho en una segunda imagen editorial" loading="lazy" decoding="async" width="1080" height="1350">
+            <figcaption class="image-caption">Segunda imagen editorial · 2026</figcaption>
+          </figure>
         </div>
       </div>
-      <div class="story-text" style="margin-top: 60px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-        <p class="reveal">Hoy, como Miss T Supranational 2025, representa algo más grande que ella misma: la posibilidad de que una chica trans de Recife pueda coronarse reina del mundo.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- LO QUE HAGO -->
-  <section id="hacer" class="services-section section-padding">
-    <div class="container">
-      <h2 class="reveal">Lo que hago</h2>
-      <p class="reveal" style="letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem; color: var(--gold-text);">Moda, Eventos & Representación</p>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <span class="service-icon">👗</span>
-          <h3>Diseño de Moda</h3>
-          <p>Colecciones que fusionan la elegancia clásica con la identidad contemporánea.</p>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">✨</span>
-          <h3>Eventos & Certámenes</h3>
-          <p>Presencia en eventos de moda y galas. Una fuerza natural que ilumina cada espacio.</p>
-        </div>
-        <div class="service-card reveal">
-          <span class="service-icon">💎</span>
-          <h3>Representación</h3>
-          <p>Voz del colectivo trans. Embajadora de diversidad, inclusión y empoderamiento.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stat-item reveal">
-      <h4>2025</h4>
-      <p>Miss T Supranational</p>
-    </div>
-    <div class="stat-item reveal">
-      <h4>Brasil</h4>
-      <p>Recife, Origen</p>
-    </div>
-    <div class="stat-item reveal">
-      <h4>España</h4>
-      <p>Hogar</p>
-    </div>
-    <div class="stat-item reveal">
-      <h4>∞</h4>
-      <p>Pasión</p>
-    </div>
-  </div>
-
-  <!-- CAMINO (Timeline) -->
-  <section id="camino" class="timeline-section section-padding">
-    <div class="container">
-      <h2 class="reveal" style="text-align: center; margin-bottom: 80px;">Mi Camino</h2>
-      <div class="timeline-container">
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Recife</div>
-          <div class="timeline-title">Nace en Recife, Brasil</div>
-          <p>Creció con pasión por la moda y el arte, soñando con un mundo más grande.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">18 años</div>
-          <div class="timeline-title">La Gran Decisión</div>
-          <p>Cruza el Atlántico rumbo a España. Solo con su talento y determinación.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Adaptación</div>
-          <div class="timeline-title">Resiliencia</div>
-          <p>Cada obstáculo se convirtió en escalón. Cada rechazo en motivación.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Hogar</div>
-          <div class="timeline-title">Española de Corazón</div>
-          <p>Obtiene la nacionalidad. España deja de ser tierra de paso para convertirse en hogar.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">2025</div>
-          <div class="timeline-title">La Coronación</div>
-          <p>Coronada Miss T Supranational en Italia. Los sueños se hacen realidad.</p>
+    <!-- LO QUE HAGO -->
+    <section id="hacer" class="services-section section-padding">
+      <div class="container">
+        <h2 class="reveal">Lo que hago</h2>
+        <p class="reveal" style="letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.8rem; color: var(--gold-text);">Moda, Eventos & Representación</p>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <span class="service-icon">👗</span>
+            <h3>Diseño de Moda</h3>
+            <p>Colecciones que fusionan la elegancia clásica con la identidad contemporánea.</p>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">✨</span>
+            <h3>Eventos & Certámenes</h3>
+            <p>Presencia en eventos de moda y galas. Una fuerza natural que ilumina cada espacio.</p>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">💎</span>
+            <h3>Representación</h3>
+            <p>Voz del colectivo trans. Embajadora de diversidad, inclusión y empoderamiento.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="contact-section section-padding">
-    <div class="container">
-      <h2 class="reveal">Trabajemos Juntas</h2>
-      <p class="reveal">Abierta a proyectos que celebren la diversidad, la moda y la autenticidad.</p>
-      <a href="mailto:ataliafalcon@icloud.com" class="contact-btn reveal">Contactar por Email</a>
-      <div class="social-links reveal" style="margin-top: 50px;">
-        <a href="https://www.instagram.com/nati_natalia_marinho_/" target="_blank">INSTAGRAM</a>
-        <a href="mailto:ataliafalcon@icloud.com">EMAIL</a>
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item reveal">
+        <h4>2025</h4>
+        <p>Miss T Supranational</p>
+      </div>
+      <div class="stat-item reveal">
+        <h4>Brasil</h4>
+        <p>Recife, Origen</p>
+      </div>
+      <div class="stat-item reveal">
+        <h4>España</h4>
+        <p>Hogar</p>
+      </div>
+      <div class="stat-item reveal">
+        <h4>∞</h4>
+        <p>Pasión</p>
       </div>
     </div>
-  </section>
+
+    <!-- CAMINO (Timeline) -->
+    <section id="camino" class="timeline-section section-padding">
+      <div class="container">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 80px;">Mi Camino</h2>
+        <div class="timeline-container">
+          <div class="timeline-item reveal">
+            <div class="timeline-date">Recife</div>
+            <div class="timeline-title">Nace en Recife, Brasil</div>
+            <p>Creció con pasión por la moda y el arte, soñando con un mundo más grande.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-date">18 años</div>
+            <div class="timeline-title">La Gran Decisión</div>
+            <p>Cruza el Atlántico rumbo a España. Solo con su talento y determinación.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-date">Adaptación</div>
+            <div class="timeline-title">Resiliencia</div>
+            <p>Cada obstáculo se convirtió en escalón. Cada rechazo en motivación.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-date">Hogar</div>
+            <div class="timeline-title">Española de Corazón</div>
+            <p>Obtiene la nacionalidad. España deja de ser tierra de paso para convertirse en hogar.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-date">2025</div>
+            <div class="timeline-title">La Coronación</div>
+            <p>Coronada Miss T Supranational en Italia. Los sueños se hacen realidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact-section section-padding">
+      <div class="container">
+        <h2 class="reveal">Trabajemos Juntas</h2>
+        <p class="reveal">Abierta a proyectos que celebren la diversidad, la moda y la autenticidad.</p>
+        <a href="mailto:ataliafalcon@icloud.com" class="contact-btn reveal">Contactar por Email</a>
+        <div class="social-links reveal" style="margin-top: 50px;">
+          <a href="https://www.instagram.com/nati_natalia_marinho_/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+          <a href="mailto:ataliafalcon@icloud.com">EMAIL</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <noscript>
+    <p style="max-width: 1100px; margin: 1rem auto 0; padding: 0 5%; color: #6b5d4a; font-size: 0.95rem;">
+      Esta página usa animaciones y efectos visuales opcionales. El contenido principal sigue siendo accesible sin JavaScript.
+    </p>
+  </noscript>
 
   <footer>
     <p>© 2026 Natalia Marinho — Miss T Supranational 2025</p>
   </footer>
 
   <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // --- 1. GLITTER SYSTEM ---
     const canvas = document.getElementById('glitter-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
     let mouse = { x: -1000, y: -1000 };
+
+    if (prefersReducedMotion) {
+      canvas.hidden = true;
+    }
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -562,10 +656,17 @@
     }
 
     function initParticles() {
+      if (prefersReducedMotion) {
+        particles = [];
+        return;
+      }
       particles = [];
       for(let i=0; i<Math.floor(window.innerWidth/5); i++) particles.push(new Particle());
     }
     function animate() {
+      if (prefersReducedMotion) {
+        return;
+      }
       ctx.clearRect(0,0,canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animate);
@@ -575,44 +676,48 @@
     window.addEventListener('touchmove', e => { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }, {passive:true});
 
     initParticles();
-    animate();
+    if (!prefersReducedMotion) {
+      animate();
+    }
 
     // --- 2. GSAP ANIMATIONS ---
-    gsap.registerPlugin(ScrollTrigger);
+    if (!prefersReducedMotion) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Floating effect
-    gsap.to(".sovereign-float", {
-      y: 20,
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-
-    // Reveal elements
-    gsap.utils.toArray(".reveal").forEach(el => {
-      gsap.from(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out"
+      // Floating effect
+      gsap.to(".sovereign-float", {
+        y: 20,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
       });
-    });
 
-    // Parallax for Hero Image
-    gsap.to(".hero-img", {
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      },
-      y: 100
-    });
+      // Reveal elements
+      gsap.utils.toArray(".reveal").forEach(el => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out"
+        });
+      });
+
+      // Parallax for Hero Image
+      gsap.to(".hero-img", {
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        },
+        y: 100
+      });
+    }
 
   </script>
 </body>
